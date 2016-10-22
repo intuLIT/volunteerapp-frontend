@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, hashHistory } from 'react-router';
 import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -10,8 +10,8 @@ const store = createStore(reducer);
 
 render(
   <Provider store={store}>
-      <Router history={browserHistory}>
-          <Route path="/volunteerapp-frontend2/build/" component={App}>
+      <Router history={hashHistory}>
+          <Route path="/" component={App}>
               <Route path="profile"  component={App} />
           </Route>
       </Router>
