@@ -1,6 +1,18 @@
 import React from 'react'
 import MainNavbar from './MainNavbar'
-import {Grid, FormGroup, FormControl, ControlLabel, Button, Row, Col, Well, Table} from 'react-bootstrap';
+import {
+  Grid,
+  FormGroup,
+  FormControl,
+  ControlLabel,
+  Button,
+  Row,
+  Col,
+  Well,
+  Table,
+  Image,
+  Panel
+} from 'react-bootstrap';
 import {hashHistory} from 'react-router';
 import $ from 'jquery';
 
@@ -12,8 +24,9 @@ const EventPage = React.createClass({
       })
     },
     componentWillMount() {
+      let reactthis = this;
       $.ajax({
-          method: "GET",
+          method: "POST",
           url: "http://54.153.15.7:8080/convert_event",
           data: JSON.stringify({id: this.props.routeParams.eventId}),
           dataType: 'json',
@@ -22,8 +35,8 @@ const EventPage = React.createClass({
               xhr.setRequestHeader('Content-Type', 'application/json');
           },
           success: function(data) {
-            const event = JSON.parse(data);
-            this.setState({...event})
+            console.log(data);
+            reactthis.setState({...data})
           },
           error: function(xhr, status, err) {
               console.error(xhr.responseText);
@@ -38,7 +51,38 @@ const EventPage = React.createClass({
                   <Row>
                       <Col sm={8} smOffset={2}>
                           <Well>
-                              <h1></h1>
+                              <Row>
+                                <Image src="https://avatars3.githubusercontent.com/u/1025028?v=3&s=60" circle />
+                                <Col sm={6}>
+                                  <h1>{this.state.name}</h1>
+                                </Col>
+                              </Row>
+                              <FormGroup>
+                                  <h4>{this.state.description}</h4>
+                              </FormGroup>
+                              <FormGroup>
+                                  <Row>
+                                    <Col sm={12}>
+                                      <ControlLabel><h4>Where</h4></ControlLabel>
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col sm={12}>
+                                      <Panel>{this.state.address}</Panel>
+                                    </Col>
+                                  </Row>
+                                  <Row>
+                                    <Col sm={12}>
+                                      <ControlLabel><h4>When</h4></ControlLabel>
+                                    </Col>
+                                    <Col sm={12}>
+                                      <ControlLabel>Start</ControlLabel>
+                                      <Panel>{this.state.start_date ? this.state.start_date: "Not set"}</Panel>
+                                      <ControlLabel>End</ControlLabel>
+                                      <Panel>{this.state.end_date ? this.state.end_date : "Not set"}</Panel>
+                                    </Col>
+                                  </Row>
+                              </FormGroup>
                           </Well>
                       </Col>
                   </Row>
@@ -48,3 +92,4 @@ const EventPage = React.createClass({
     }
 
 })
+export default EventPage;
