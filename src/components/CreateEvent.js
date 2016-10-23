@@ -184,7 +184,7 @@ const CreateEvent = React.createClass({
                                             bsSize="large"
                                             block type="submit"
                                             onClick={(e) => {
-                                                e.preventDefault()
+                                                e.preventDefault();
                                                 this.submitEvent()
                                               }}
                                             >

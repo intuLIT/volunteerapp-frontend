@@ -7,7 +7,7 @@ import $ from 'jquery';
 
 const EventPage = React.createClass({
     getInitialState() {
-      return (){
+      return ({
 
       })
     },
@@ -29,7 +29,7 @@ const EventPage = React.createClass({
               console.error(xhr.responseText);
           }
       });
-    }
+    },
     render() {
         return (
           <div>

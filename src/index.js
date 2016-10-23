@@ -5,6 +5,7 @@ import App from './components/App'
 import Home from './components/Home'
 import CreateEvent from './components/CreateEvent'
 import EventList from './components/EventList'
+import EventPage from './components/EventPage'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import AddOrganization from './components/AddOrganization'
@@ -16,10 +17,11 @@ render(
             <Route path="create-event" component={CreateEvent}/>
             <Route path="create-org" component={AddOrganization}/>
             <Route path="event-list" component={EventList}/>
-            <Route path="event/:evendId" component={EventList}/>
+            <Route path="event/:eventId" component={EventPage}/>
+            <Route path="event-list/:searchType" component={EventList}/>
             <Route path="login" component={Login}/>
             <Route path="signup" component={Signup}/>
         </Route>
-    </Router>    ,
+    </Router>,
     document.getElementById('root')
 );
