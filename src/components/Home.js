@@ -12,7 +12,6 @@ class Home extends React.Component {
             <div>
                 <MainNavbar/>
                 <Grid>
-                    <p>Welcome to our website homepage!</p>
                     <Jumbotron>
                         <h1 style={centerStyle}>
                             Vlntr

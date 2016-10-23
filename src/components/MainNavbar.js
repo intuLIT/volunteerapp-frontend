@@ -31,7 +31,7 @@ class MainNavbar extends React.Component {
                     </Nav>
                     <Nav pullRight onSelect={this.handleNavbarClick}>
                         <NavItem eventKey={'login'} href="#">My Account</NavItem>
-                        <NavItem eventKey={'support'} href="#">Support</NavItem>
+                        <NavItem eventKey={'signup'} href="#">Signup</NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

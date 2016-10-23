@@ -3,24 +3,24 @@
  */
 import React from 'react'
 import MainNavbar from './MainNavbar'
-import {Grid, FormGroup, FormControl, Button, Row, Col} from 'react-bootstrap';
+import {Grid, FormGroup, FormControl, Button, Row, Col, Well} from 'react-bootstrap';
 import 'react-select/dist/react-select.css';
 
-class Login extends React.Component {
+class Signup extends React.Component {
     constructor(props) {
         super(props);
         // Set up initial state
         this.state = {
-            volunteers: 50,
-            category: null
+            email: null,
+            pass: null
         };
-        this.handleVolunteerChange = this.handleVolunteerChange.bind(this);
-        this.handleCategoryChange = this.handleCategoryChange.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handlePassChange = this.handlePassChange.bind(this);
     }
-    handleVolunteerChange(e){
+    handleEmailChange(e){
         this.setState({volunteers: e.target.value})
     };
-    handleCategoryChange(e){
+    handlePassChange(e){
         this.setState({category: e})
     };
     render() {
@@ -30,27 +30,29 @@ class Login extends React.Component {
                 <Grid>
                     <Row>
                         <Col sm={6} smOffset={3} md={4} mdOffset={4}>
-                            <h2>Login</h2>
-                            <form>
-                                <FormGroup>
-                                    <FormControl
-                                        type="email"
-                                        label="Email address"
-                                        placeholder="Enter email"
-                                    />
-                                </FormGroup>
-                                <FormGroup>
-                                    <FormControl
-                                        id="formControlsPassword"
-                                        label="Password"
-                                        type="password"
-                                        placeholder="Password"
-                                    />
-                                </FormGroup>
-                                <Button type="submit">
-                                    Submit
-                                </Button>
-                            </form>
+                            <Well>
+                                <h2 style={{marginTop: '15px', marginBottom: '20px', textAlign: 'center'}}>Login</h2>
+                                <form>
+                                    <FormGroup>
+                                        <FormControl
+                                            type="email"
+                                            label="Email address"
+                                            placeholder="Enter email"
+                                        />
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <FormControl
+                                            id="formControlsPassword"
+                                            label="Password"
+                                            type="password"
+                                            placeholder="Password"
+                                        />
+                                    </FormGroup>
+                                    <Button bsStyle="primary" bsSize="large" block type="submit">
+                                        Submit
+                                    </Button>
+                                </form>
+                            </Well>
                         </Col>
                     </Row>
                 </Grid>
@@ -59,4 +61,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+export default Signup
