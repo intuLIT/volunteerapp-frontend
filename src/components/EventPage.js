@@ -11,7 +11,8 @@ import {
   Well,
   Table,
   Image,
-  Panel
+  Panel,
+  ProgressBar,
 } from 'react-bootstrap';
 import {hashHistory} from 'react-router';
 import $ from 'jquery';
@@ -43,6 +44,9 @@ const EventPage = React.createClass({
           }
       });
     },
+    addUser(uid,eid) {
+
+    },
     render() {
         return (
           <div>
@@ -59,6 +63,30 @@ const EventPage = React.createClass({
                               </Row>
                               <FormGroup>
                                   <h4>{this.state.description}</h4>
+                              </FormGroup>
+                              <FormGroup>
+                                <Row>
+                                  <Col sm={12}>
+                                    <ControlLabel><h4>Volunteers</h4></ControlLabel>
+                                    <ProgressBar
+                                        min={this.state.min_volunteers}
+                                        max={this.state.max_volunteers}
+                                        label={10}
+                                    />
+                                  </Col>
+                                </Row>
+                                <Row>
+                                    <Button
+                                      bsStyle="primary"
+                                      bsSize="large"
+                                      block type="submit"
+                                      onClick={(e) => {
+                                          e.preventDefault();
+                                          this.addUser(this.props.user.id, this.state.id)}
+                                      }>
+                                        Submit
+                                    </Button>
+                                </Row>
                               </FormGroup>
                               <FormGroup>
                                   <Row>
