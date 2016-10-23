@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import MainNavbar from './MainNavbar'
 import {Grid, Jumbotron} from 'react-bootstrap';
 
-
 class Home extends React.Component {
     render() {
+      const { query } = this.props
       var centerStyle = {
           textAlign: "center",
       };
@@ -15,10 +15,11 @@ class Home extends React.Component {
                 <Grid>
                     <p>Welcome to our website homepage!</p>
                     <Jumbotron>
-                      <h1 style={centerStyle}>
+                      <h1 style={centerStyle}
+                          onClick={query}>
                           Vlntr
                       </h1>
-                      <p> style={centerStyle}
+                      <p style={centerStyle}>
                           crowdsourcing volunteers
                       </p>
                     </Jumbotron>
@@ -26,6 +27,10 @@ class Home extends React.Component {
             </div>
         )
     }
+}
+
+Home.propTypes = {
+  query: PropTypes.func
 }
 
 export default Home

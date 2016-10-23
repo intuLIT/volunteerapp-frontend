@@ -4,7 +4,7 @@ import {render} from 'react-dom'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import App from './components/App'
-import Home from './components/Home'
+import HomePage from './containers/HomePage'
 import Test from './components/Test'
 import reducer from './reducers'
 
@@ -14,7 +14,7 @@ render(
     <Provider store={store}>
         <Router history={hashHistory}>
             <Route path="/" component={App}>
-                <IndexRoute component={Home}/>
+                <IndexRoute component={HomePage}/>
                 <Route path="test" component={Test}/>
             </Route>
         </Router>
