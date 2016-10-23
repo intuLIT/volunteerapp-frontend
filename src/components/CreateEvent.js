@@ -174,8 +174,15 @@ const CreateEvent = React.createClass({
                                             value={this.state.category}
                                             multi={true}
                                             options={[
-                                                { value: 'one', label: 'One' },
-                                                { value: 'two', label: 'Two' }
+                                                { value: 'animal', label: 'Animals' },
+                                                { value: 'basicNeeds', label: 'Basic Needs' },
+                                                { value: 'community', label: 'Community' },
+                                                { value: 'crisis', label: 'Crisis Support' },
+                                                { value: 'education', label: 'Education' },
+                                                { value: 'employment', label: 'Employment' },
+                                                { value: 'family', label: 'Family' },
+                                                { value: 'health', label: 'Health' },
+                                                { value: 'veterans', label: 'Veterans' }
                                             ]}
                                             onChange={this.handleCategoryChange}
                                         />

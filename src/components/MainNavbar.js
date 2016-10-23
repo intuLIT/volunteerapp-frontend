@@ -25,12 +25,7 @@ const MainNavbar = React.createClass({
                     <Nav onSelect={this.handleNavbarClick} activeKey={ this.props.path }>
                         <NavItem eventKey={'/create-org'} href="#">Create Organization</NavItem>
                         <NavItem eventKey={'/create-event'} href="#">Create Event</NavItem>
-                        <NavDropdown eventKey={3} title="Events" id="basic-nav-dropdown">
-                            <MenuItem eventKey={'/event-list'}>Near Me</MenuItem>
-                            <MenuItem eventKey={'/event-list/all'}>Everywhere</MenuItem>
-                            <MenuItem divider />
-                            <MenuItem eventKey={3.3}>Literally Mars</MenuItem>
-                        </NavDropdown>
+                        <NavItem eventKey={'/event-list'} href="#">View Events</NavItem>
                     </Nav>
                     {this.isLoggedIn() ?
                         <Nav pullRight onSelect={this.handleNavbarClick}>

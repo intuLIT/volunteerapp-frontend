@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import MainNavbar from './MainNavbar'
-import { Link } from 'react-router'
+import { Link , hashHistory} from 'react-router'
 import {Grid, Form, FormGroup, FormControl, ControlLabel, Button, Row, Col, Well, Table} from 'react-bootstrap';
 import 'react-select/dist/react-select.css';
 import $ from 'jquery';
@@ -16,7 +16,7 @@ const EventList = React.createClass({
         })
     },
     handleZipCodeChange(e){
-        this.setState({zipCode: e})
+        this.setState({zipCode: e.target.value})
     },
     componentWillMount() {
         let zip = this.props.routeParams.zipCode;
@@ -82,10 +82,10 @@ const EventList = React.createClass({
                                             <FormGroup controlId="formInlineEmail">
                                                 <ControlLabel>Zip Code</ControlLabel>
                                                 {' '}
-                                                <FormControl type="text" placeholder="Ex. 93410" />
+                                                <FormControl type="text" placeholder="Ex. 93410" value={this.state.zipCode} onChange={this.handleZipCodeChange} />
                                             </FormGroup>
                                             {' '}
-                                            <Button type="submit">
+                                            <Button type="submit" onClick={(e) => {e.preventDefault(); hashHistory.push('/event-list/' + this.state.zipCode + '/');}}>
                                                 Search
                                             </Button>
                                         </Form>
