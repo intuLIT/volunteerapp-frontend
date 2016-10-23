@@ -4,7 +4,7 @@
 import React from 'react'
 import MainNavbar from './MainNavbar'
 import { Link } from 'react-router'
-import {Grid, FormGroup, FormControl, ControlLabel, Button, Row, Col, Well, Table} from 'react-bootstrap';
+import {Grid, Form, FormGroup, FormControl, ControlLabel, Button, Row, Col, Well, Table} from 'react-bootstrap';
 import 'react-select/dist/react-select.css';
 import $ from 'jquery';
 
@@ -15,39 +15,54 @@ const EventList = React.createClass({
             category: null
         })
     },
-    handleVolunteerChange(e){
-        this.setState({volunteers: e.target.value})
-    },
-    handleCategoryChange(e){
-        this.setState({category: e})
-    },
-    handleLocationChange(e){
-        this.setState({location: e})
-    },
-    getUrlParameter(name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-        var results = regex.exec(location.search);
-        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    handleZipCodeChange(e){
+        this.setState({zipCode: e})
     },
     componentWillMount() {
-        console.log("running all...");
-        $.ajax({
-            method: "GET",
-            url: "http://54.153.15.7:8080/event/all/",
-            dataType: 'json',
-            crossDomain: true,
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('Content-Type', 'application/json');
-            },
-            success: function(data) {
-                this.setState({data: data});
-                console.log(data)
-            }.bind(this),
-            error: function(xhr, status, err) {
-                console.error(xhr.responseText);
-            }
-        });
+        let zip = this.props.routeParams.zipCode;
+        if (zip > 0){ // zip code looks valid
+            this.setState({zipCode: zip})
+        }
+        this.getEvents(zip);
+    },
+    getEvents(zip){
+        if (zip && zip.length > 4){
+            $.ajax({
+                method: "POST",
+                url: "http://54.153.15.7:8080/event/nearby/",
+                data: JSON.stringify({zip_code: zip}),
+                dataType: 'json',
+                crossDomain: true,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                },
+                success: function(data) {
+                    this.setState({data: data});
+                    console.log(data)
+                }.bind(this),
+                error: function(xhr, status, err) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+        else {
+            $.ajax({
+                method: "GET",
+                url: "http://54.153.15.7:8080/event/all/",
+                dataType: 'json',
+                crossDomain: true,
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                },
+                success: function(data) {
+                    this.setState({data: data});
+                    console.log(data)
+                }.bind(this),
+                error: function(xhr, status, err) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
     },
     render() {
         return (
@@ -58,7 +73,24 @@ const EventList = React.createClass({
                         <Col sm={10} smOffset={1}>
                             <Well>
                                 <h2>Local Volunteer Events</h2>
-                                <p>Make a difference in your community by volunteering.</p>
+                                <Row>
+                                    <Col sm={4}>
+                                        <p>Make a difference in your community by volunteering.</p>
+                                    </Col>
+                                    <Col sm={8}>
+                                        <Form inline>
+                                            <FormGroup controlId="formInlineEmail">
+                                                <ControlLabel>Zip Code</ControlLabel>
+                                                {' '}
+                                                <FormControl type="text" placeholder="Ex. 93410" />
+                                            </FormGroup>
+                                            {' '}
+                                            <Button type="submit">
+                                                Search
+                                            </Button>
+                                        </Form>
+                                    </Col>
+                                </Row>
                                 <Table responsive>
                                     <thead>
                                     <tr>

@@ -35,6 +35,7 @@ const MainNavbar = React.createClass({
                     {this.isLoggedIn() ?
                         <Nav pullRight onSelect={this.handleNavbarClick}>
                             <NavItem eventKey={'login'} href="#">{this.props.user.name}'s Account</NavItem>
+                            <NavItem eventKey={'logout'} href="#">Logout</NavItem>
                         </Nav> :
                         <Nav pullRight onSelect={this.handleNavbarClick}>
                             <NavItem eventKey={'login'} href="#">Login</NavItem>
