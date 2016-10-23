@@ -5,6 +5,7 @@ import React from 'react'
 import MainNavbar from './MainNavbar'
 import {Grid, FormGroup, FormControl, ControlLabel, Button, Row, Col, Well} from 'react-bootstrap';
 import Select from 'react-select';
+import {hashHistory} from 'react-router';
 import ReactBootstrapSlider from 'react-bootstrap-slider';
 import Geosuggest from 'react-geosuggest';
 import Datetime from 'react-datetime';
@@ -27,6 +28,7 @@ const CreateEvent = React.createClass({
             sponsors: null,
             startDate: null,
             endDate: null,
+            eventCreated: false
         })
     },
     handleVolunteerChange(e){
@@ -78,14 +80,18 @@ const CreateEvent = React.createClass({
           },
           success: function(data) {
             console.log(data)
+            this.setState({eventCreated: true})
           }.bind(this),
           error: function(xhr, status, err) {
               console.error(xhr.responseText);
           }.bind(this)
       });
     },
+    returnPage() {
+      hashHistory.push('event-list')
+    },
     render() {
-        return (
+          return !this.state.eventCreated ? (
             <div>
                 <MainNavbar user={this.props.user} path={this.props.location.pathname}/>
                 <Grid>
@@ -190,6 +196,31 @@ const CreateEvent = React.createClass({
                     </Row>
                 </Grid>
             </div>
+        ) : (
+          <div>
+          <MainNavbar user={this.props.user} path={this.props.location.pathname}/>
+          <Grid>
+              <Row>
+                  <Col sm={8} smOffset={2}>
+                      <Well>
+                          <h1>Thank you for creating an event</h1>
+                            <form>
+                              <Button bsStyle="primary"
+                                      bsSize="large"
+                                      block type="submit"
+                                      onClick={(e) => {
+                                          e.preventDefault()
+                                          this.returnPage()
+                                        }}
+                                      >
+                                  Return to Home
+                              </Button>
+                          </form>
+                      </Well>
+                  </Col>
+              </Row>
+          </Grid>
+      </div>
         )
     }
 });
