@@ -1,6 +1,6 @@
 {
-  "name": "todos",
-  "version": "0.0.1",
+  "name": "volunteerApp",
+  "version": "0.1.0",
   "private": true,
   "devDependencies": {
     "enzyme": "^2.4.1",
@@ -17,9 +17,11 @@
     "immutable": "^3.8.1",
     "react": "^15.3.0",
     "react-bootstrap": "^0.30.5",
+    "react-bootstrap-slider": "^1.1.2",
     "react-dom": "^15.3.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
+    "react-select": "^1.0.0-rc.2",
     "redux": "^3.5.2",
     "webpack": "^1.13.2"
   },

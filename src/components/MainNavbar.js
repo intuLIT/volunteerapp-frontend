@@ -12,25 +12,26 @@ class MainNavbar extends React.Component {
             <Navbar inverse>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#">React-Bootstrap</a>
+                        <a href="#">Vlntr</a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav onSelect={this.handleNavbarClick}>
-                        <NavItem eventKey={'/'}>Home</NavItem>
-                        <NavItem eventKey={'test'}>Test #1</NavItem>
-                        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                            <MenuItem eventKey={3.1}>Action</MenuItem>
-                            <MenuItem eventKey={3.2}>Another action</MenuItem>
-                            <MenuItem eventKey={3.3}>Something else here</MenuItem>
+                        <NavItem eventKey={'/'} href="#">Home</NavItem>
+                        <NavItem eventKey={'test'} href="#">Test #1</NavItem>
+                        <NavItem eventKey={'create'} href="#">Create Event</NavItem>
+                        <NavDropdown eventKey={3} title="Events" id="basic-nav-dropdown">
+                            <MenuItem eventKey={3.1}>Near Me</MenuItem>
+                            <MenuItem eventKey={3.2}>Far Away</MenuItem>
+                            <MenuItem eventKey={3.3}>Really Far Away</MenuItem>
                             <MenuItem divider />
-                            <MenuItem eventKey={3.3}>Separated link</MenuItem>
+                            <MenuItem eventKey={3.3}>Literally Mars</MenuItem>
                         </NavDropdown>
                     </Nav>
-                    <Nav pullRight>
-                        <NavItem eventKey={1} href="#">Link Right</NavItem>
-                        <NavItem eventKey={2} href="#">Link Right</NavItem>
+                    <Nav pullRight onSelect={this.handleNavbarClick}>
+                        <NavItem eventKey={'login'} href="#">My Account</NavItem>
+                        <NavItem eventKey={'support'} href="#">Support</NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

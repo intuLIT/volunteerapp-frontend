@@ -6,6 +6,8 @@ import {Provider} from 'react-redux'
 import App from './components/App'
 import Home from './components/Home'
 import Test from './components/Test'
+import CreateEvent from './components/CreateEvent'
+import Login from './components/Login'
 import reducer from './reducers'
 
 const store = createStore(reducer);
@@ -16,6 +18,8 @@ render(
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
                 <Route path="test" component={Test}/>
+                <Route path="create" component={CreateEvent}/>
+                <Route path="login" component={Login}/>
             </Route>
         </Router>
     </Provider>,
