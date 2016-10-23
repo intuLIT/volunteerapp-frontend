@@ -39,7 +39,7 @@ class CreateEvent extends React.Component {
                         <Col sm={8} smOffset={2}>
                             <Well>
                                 <h2>Create a New Event</h2>
-                                <p>Let's make your project successful!</p>
+                                <p>Let's get volunteers and make your projects successful!</p>
                                 <form>
                                     <FormGroup>
                                         <ControlLabel>Event Name</ControlLabel>
