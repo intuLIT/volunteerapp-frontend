@@ -13,28 +13,34 @@ const App = React.createClass({
         document.body.style.backgroundAttachment = "fixed";
         document.body.style.backgroundPosition = "center center";
         document.body.style.backgroundSize = "cover";
-        this.setState({user : localStorage.getItem('user')});
+        localStorage.getItem('user') !== null ?
+        this.setState({user : JSON.parse(localStorage.getItem('user'))}) : null;
     },
     getUser(email){
-        const reactThis = this;
-        $.ajax({
-            method: "POST",
-            url: "http://54.153.15.7:8080/user/info/",
-            data: JSON.stringify({email: email}),
-            dataType: 'json',
-            crossDomain: true,
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('Content-Type', 'application/json');
-            },
-            success: function(data) {
-                reactThis.setState({user : data});
-                localStorage.setItem('user', JSON.stringify(data));
-                hashHistory.push('event-list');
-            },
-            error: function(xhr, status, err) {
-                console.error(xhr.responseText);
-            }
-        });
+        if (email == null){
+            this.setState({user : null});
+        }
+        else {
+            const reactThis = this;
+            $.ajax({
+                method: "POST",
+                url: "http://54.153.15.7:8080/user/info/",
+                data: JSON.stringify({email: email}),
+                dataType: 'json',
+                crossDomain: true,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                },
+                success: function (data) {
+                    reactThis.setState({user: data});
+                    localStorage.setItem('user', JSON.stringify(data));
+                    hashHistory.push('event-list');
+                },
+                error: function (xhr, status, err) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
     },
     render() {
         return (
