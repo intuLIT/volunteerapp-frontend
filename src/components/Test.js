@@ -9,7 +9,7 @@ class Test extends React.Component {
                 <MainNavbar />
                 <Grid>
                     <p>This is a test route!!</p>
-                </Grid>
+            </Grid>
             </div>
         )
     }
