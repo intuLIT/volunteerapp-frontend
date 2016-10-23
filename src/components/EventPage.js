@@ -28,7 +28,7 @@ const EventPage = React.createClass({
       let reactthis = this;
       $.ajax({
           method: "POST",
-          url: "http://54.153.15.7:8080/convert_event",
+          url: "http://vlntr-api.reesewoodard.com:8080/convert_event",
           data: JSON.stringify({id: this.props.routeParams.eventId}),
           dataType: 'json',
           crossDomain: true,

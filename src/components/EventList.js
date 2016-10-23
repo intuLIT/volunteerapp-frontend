@@ -7,12 +7,12 @@ import { Link , hashHistory} from 'react-router'
 import {Grid, Form, FormGroup, FormControl, ControlLabel, Button, Row, Col, Well, Table} from 'react-bootstrap';
 import 'react-select/dist/react-select.css';
 import $ from 'jquery';
+import moment from 'moment';
 
 const EventList = React.createClass({
     getInitialState(){
     return ({
-            volunteers: 50,
-            category: null
+            zipCode: null
         })
     },
     handleZipCodeChange(e){
@@ -29,7 +29,7 @@ const EventList = React.createClass({
         if (zip && zip.length > 4){
             $.ajax({
                 method: "POST",
-                url: "http://54.153.15.7:8080/event/nearby/",
+                url: "http://vlntr-api.reesewoodard.com:8080/event/nearby/",
                 data: JSON.stringify({zip_code: zip}),
                 dataType: 'json',
                 crossDomain: true,
@@ -48,7 +48,7 @@ const EventList = React.createClass({
         else {
             $.ajax({
                 method: "GET",
-                url: "http://54.153.15.7:8080/event/all/",
+                url: "http://vlntr-api.reesewoodard.com:8080/event/all/",
                 dataType: 'json',
                 crossDomain: true,
                 beforeSend: function(xhr) {
@@ -74,10 +74,10 @@ const EventList = React.createClass({
                             <Well>
                                 <h2>Local Volunteer Events</h2>
                                 <Row>
-                                    <Col sm={4}>
+                                    <Col sm={6}>
                                         <p>Make a difference in your community by volunteering.</p>
                                     </Col>
-                                    <Col sm={8}>
+                                    <Col sm={6}>
                                         <Form inline>
                                             <FormGroup controlId="formInlineEmail">
                                                 <ControlLabel>Zip Code</ControlLabel>
@@ -85,7 +85,7 @@ const EventList = React.createClass({
                                                 <FormControl type="text" placeholder="Ex. 93410" value={this.state.zipCode} onChange={this.handleZipCodeChange} />
                                             </FormGroup>
                                             {' '}
-                                            <Button type="submit" onClick={(e) => {e.preventDefault(); hashHistory.push('/event-list/' + this.state.zipCode + '/');}}>
+                                            <Button type="submit" onClick={(e) => {e.preventDefault(); hashHistory.push('/event-list/' + this.state.zipCode + '/'); this.getEvents(e.target.value);}}>
                                                 Search
                                             </Button>
                                         </Form>
@@ -95,8 +95,7 @@ const EventList = React.createClass({
                                     <thead>
                                     <tr>
                                         <th>Event Name</th>
-                                        <th>Organization</th>
-                                        <th>Date/Time</th>
+                                        {/*<th>Date/Time</th>*/}
                                         <th>Location</th>
                                         <th>Volunteers Needed</th>
                                     </tr>
@@ -106,8 +105,8 @@ const EventList = React.createClass({
                                         return (
                                             <tr key={event.id}>
                                                 <td><Link to={'event/' + event.id + '/'}>{event.name}</Link></td>
-                                                <td>{event.organization}</td>
-                                                <td>{event.start_date} - {event.end_date}</td>
+                                                {/*<td>{event.start_date == event.end_date ? moment(event.start_date).format("MM/DD/YYYY") :
+                                                moment(event.start_date).format("MM/DD/YYYY") - moment(event.start_date).format("MM/DD/YYYY")} </td>*/}
                                                 <td>{event.location}</td>
                                                 <td>{(event.min_volunteers === event.max_volunteers) ? event.min_volunteers :
                                                     event.min_volunteers + " - " + event.max_volunteers}</td>

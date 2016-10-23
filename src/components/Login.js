@@ -21,7 +21,9 @@ const Login = React.createClass({
     },
     componentWillMount(){
         const user = this.props.user;
-        $.isEmptyObject({user})? hashHistory.push('event-list') : null;
+        if (user && user.name){
+            hashHistory.push('/event-list')
+        }
     },
     handleEmailChange(e){
         this.setState({volunteers: e.target.value})

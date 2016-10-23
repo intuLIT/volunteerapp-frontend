@@ -23,8 +23,10 @@ const MainNavbar = React.createClass({
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav onSelect={this.handleNavbarClick} activeKey={ this.props.path }>
-                        <NavItem eventKey={'/create-org'} href="#">Create Organization</NavItem>
-                        <NavItem eventKey={'/create-event'} href="#">Create Event</NavItem>
+                        {this.props.user ? this.props.user.organization === null ?
+                            <NavItem eventKey={'/create-org'} href="#">Register Organization</NavItem> : null : null}
+                        {this.props.user ? this.props.user.organization !== null ?
+                            <NavItem eventKey={'/create-event'} href="#">Create Event</NavItem> : null : null}
                         <NavItem eventKey={'/event-list'} href="#">View Events</NavItem>
                     </Nav>
                     {this.isLoggedIn() ?
