@@ -6,23 +6,22 @@ import MainNavbar from './MainNavbar'
 import {Grid, FormGroup, FormControl, Button, Row, Col, Well} from 'react-bootstrap';
 import 'react-select/dist/react-select.css';
 
-class Signup extends React.Component {
-    constructor(props) {
-        super(props);
-        // Set up initial state
-        this.state = {
+const Login = React.createClass({
+    getInitialState(){
+        return ({
             email: null,
             pass: null
-        };
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handlePassChange = this.handlePassChange.bind(this);
-    }
+        })
+    },
     handleEmailChange(e){
         this.setState({volunteers: e.target.value})
-    };
+    },
     handlePassChange(e){
         this.setState({category: e})
-    };
+    },
+    modifyState(newState){
+        this.setState(newState);
+    },
     render() {
         return (
             <div>
@@ -35,6 +34,7 @@ class Signup extends React.Component {
                                 <form>
                                     <FormGroup>
                                         <FormControl
+                                            onChange={(e) => this.modifyState({email: e.target.value})}
                                             type="email"
                                             label="Email address"
                                             placeholder="Enter email"
@@ -48,7 +48,7 @@ class Signup extends React.Component {
                                             placeholder="Password"
                                         />
                                     </FormGroup>
-                                    <Button bsStyle="primary" bsSize="large" block type="submit">
+                                    <Button bsStyle="primary" bsSize="large" block type="submit" onClick={(e) => {e.preventDefault(); this.props.getUser(this.state.email)}}>
                                         Submit
                                     </Button>
                                 </form>
@@ -59,6 +59,6 @@ class Signup extends React.Component {
             </div>
         )
     }
-}
+});
 
-export default Signup
+export default Login

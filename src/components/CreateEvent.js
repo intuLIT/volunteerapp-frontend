@@ -7,29 +7,27 @@ import {Grid, FormGroup, FormControl, ControlLabel, Button, Row, Col, Well} from
 import Select from 'react-select';
 import ReactBootstrapSlider from 'react-bootstrap-slider';
 import Geosuggest from 'react-geosuggest'
+var Slider = require('rc-slider');
+require('rc-slider/assets/index.css');
 import 'react-select/dist/react-select.css';
 
-class CreateEvent extends React.Component {
-    constructor(props) {
-        super(props);
-        // Set up initial state
-        this.state = {
-            volunteers: 50,
+
+const CreateEvent = React.createClass({
+    getInitialState(){
+        return ({
+            volunteers: [1, 20],
             category: null
-        };
-        this.handleVolunteerChange = this.handleVolunteerChange.bind(this);
-        this.handleCategoryChange = this.handleCategoryChange.bind(this);
-        this.handleLocationChange = this.handleLocationChange.bind(this);
-    }
+        })
+    },
     handleVolunteerChange(e){
-        this.setState({volunteers: e.target.value})
-    };
+        this.setState({volunteers: e})
+    },
     handleCategoryChange(e){
         this.setState({category: e})
-    };
+    },
     handleLocationChange(e){
         this.setState({location: e})
-    };
+    },
     render() {
         return (
             <div>
@@ -71,12 +69,14 @@ class CreateEvent extends React.Component {
                                     </FormGroup>
                                     <FormGroup>
                                         <ControlLabel>Number of Volunteers Needed</ControlLabel>
+                                        <Slider range allowCross={false} defaultValue={[1, 20]} onChange={this.handleVolunteerChange} />
                                         <br />
                                         <Row>
-                                            <Col sm={6}>
+                                            <Col sm={8}>
                                                 <ReactBootstrapSlider
                                                     value={this.state.volunteers}
                                                     slideStop={this.handleVolunteerChange}
+                                                    change={this.handleVolunteerChange}
                                                     step={1}
                                                     max={200}
                                                     min={1}
@@ -84,11 +84,10 @@ class CreateEvent extends React.Component {
                                                     reverse={true}
                                                 />
                                             </Col>
-                                            <Col sm={6}>
-                                                <h2 style={{margin:'0px'}}>{this.state.volunteers}</h2>
+                                            <Col sm={4}>
+                                                <h3 style={{margin:'0px'}}>{this.state.volunteers[0] + " - " + this.state.volunteers[1]} volunteers</h3>
                                             </Col>
                                         </Row>
-
                                     </FormGroup>
                                     <FormGroup>
                                         <ControlLabel>Cause Category</ControlLabel>
@@ -114,6 +113,6 @@ class CreateEvent extends React.Component {
             </div>
         )
     }
-}
+})
 
 export default CreateEvent
