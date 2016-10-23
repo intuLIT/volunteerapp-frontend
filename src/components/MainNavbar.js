@@ -12,15 +12,14 @@ class MainNavbar extends React.Component {
             <Navbar inverse>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#">Vlntr</a>
+                        <a onClick={() => this.handleNavbarClick('/')}>Vlntr</a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav onSelect={this.handleNavbarClick}>
-                        <NavItem eventKey={'/'} href="#">Home</NavItem>
-                        <NavItem eventKey={'test'} href="#">Test #1</NavItem>
-                        <NavItem eventKey={'create'} href="#">Create Event</NavItem>
+                        <NavItem eventKey={'create-org'} href="#">Create Organization</NavItem>
+                        <NavItem eventKey={'create-event'} href="#">Create Event</NavItem>
                         <NavDropdown eventKey={3} title="Events" id="basic-nav-dropdown">
                             <MenuItem eventKey={3.1}>Near Me</MenuItem>
                             <MenuItem eventKey={3.2}>Far Away</MenuItem>
