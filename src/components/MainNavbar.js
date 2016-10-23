@@ -2,11 +2,11 @@ import React from 'react';
 import {hashHistory} from 'react-router';
 import {Navbar, Nav, MenuItem, NavItem, NavDropdown} from 'react-bootstrap';
 
-class MainNavbar extends React.Component {
+const MainNavbar = React.createClass({
     handleNavbarClick(eventKey){
         console.log(eventKey);
         hashHistory.push(eventKey);
-    }
+    },
     render() {
         return (
             <Navbar inverse>
@@ -36,6 +36,6 @@ class MainNavbar extends React.Component {
             </Navbar>
         )
     }
-}
+});
 
 export default MainNavbar

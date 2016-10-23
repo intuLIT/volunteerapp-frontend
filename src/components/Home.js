@@ -3,7 +3,7 @@ import MainNavbar from './MainNavbar'
 import {Grid, Jumbotron} from 'react-bootstrap';
 
 
-class Home extends React.Component {
+const Home = React.createClass({
     render() {
         const centerStyle = {
             'textAlign': 'center'
@@ -12,7 +12,7 @@ class Home extends React.Component {
             <div>
                 <MainNavbar/>
                 <Grid>
-                    <Jumbotron>
+                    <Jumbotron style={{background: 'rgba(255,255,255,.90)'}}>
                         <h1 style={centerStyle}>
                             Vlntr
                         </h1>
@@ -24,6 +24,6 @@ class Home extends React.Component {
             </div>
         )
     }
-}
+});
 
 export default Home

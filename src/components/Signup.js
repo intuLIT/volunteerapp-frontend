@@ -5,23 +5,19 @@ import React from 'react'
 import MainNavbar from './MainNavbar'
 import {Grid, FormGroup, FormControl, ControlLabel, Button, Row, Col, Well} from 'react-bootstrap';
 
-class Signup extends React.Component {
-    constructor(props) {
-        super(props);
-        // Set up initial state
-        this.state = {
+const Signup = React.createClass({
+    getInitialState(){
+        return ({
             volunteers: 50,
             category: null
-        };
-        this.handleVolunteerChange = this.handleVolunteerChange.bind(this);
-        this.handleCategoryChange = this.handleCategoryChange.bind(this);
-    }
+        })
+    },
     handleVolunteerChange(e){
         this.setState({volunteers: e.target.value})
-    };
+    },
     handleCategoryChange(e){
         this.setState({category: e})
-    };
+    },
     render() {
         return (
             <div>
@@ -87,6 +83,6 @@ class Signup extends React.Component {
             </div>
         )
     }
-}
+});
 
 export default Signup

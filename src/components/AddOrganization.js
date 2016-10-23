@@ -7,27 +7,21 @@ import {Grid, FormGroup, FormControl, ControlLabel, Button, Row, Col, Well} from
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
-class AddOrganization extends React.Component {
-    constructor(props) {
-        super(props);
-        // Set up initial state
-        this.state = {
-            volunteers: 50,
+const AddOrganization = React.createClass({
+    getInitialState(){
+        return ({
             category: null
-        };
-        this.handleVolunteerChange = this.handleVolunteerChange.bind(this);
-        this.handleCategoryChange = this.handleCategoryChange.bind(this);
-        this.handleCauseChange = this.handleCauseChange.bind(this);
-    }
+        })
+    },
     handleVolunteerChange(e){
         this.setState({volunteers: e.target.value})
-    };
+    },
     handleCategoryChange(e){
         this.setState({category: e})
-    };
+    },
     handleCauseChange(e){
         this.setState({cause: e})
-    };
+    },
     render() {
         return (
             <div>
@@ -100,6 +94,6 @@ class AddOrganization extends React.Component {
             </div>
         )
     }
-}
+})
 
 export default AddOrganization
