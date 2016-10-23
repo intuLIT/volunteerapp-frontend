@@ -13,6 +13,9 @@ const AddOrganization = React.createClass({
             category: null
         })
     },
+    componentWillMount(){
+
+    },
     handleVolunteerChange(e){
         this.setState({volunteers: e.target.value})
     },
@@ -25,7 +28,7 @@ const AddOrganization = React.createClass({
     render() {
         return (
             <div>
-                <MainNavbar/>
+                <MainNavbar user={this.props.user} path={this.props.location.pathname}/>
                 <Grid>
                     <Row>
                         <Col sm={8} smOffset={2}>

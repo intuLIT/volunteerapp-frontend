@@ -1,5 +1,6 @@
 import React from 'react'
 import $ from 'jquery'
+import {hashHistory} from 'react-router';
 
 const App = React.createClass({
     getInitialState(){
@@ -14,6 +15,7 @@ const App = React.createClass({
         document.body.style.backgroundSize = "cover";
     },
     getUser(email){
+        const reactThis = this;
         $.ajax({
             method: "POST",
             url: "http://54.153.15.7:8080/user/info/",
@@ -24,11 +26,12 @@ const App = React.createClass({
                 xhr.setRequestHeader('Content-Type', 'application/json');
             },
             success: function(data) {
-                this.setState({user : data})
-            }.bind(this),
+                reactThis.setState({user : data});
+                hashHistory.push('event-list');
+            },
             error: function(xhr, status, err) {
                 console.error(xhr.responseText);
-            }.bind(this)
+            }
         });
     },
     render() {
