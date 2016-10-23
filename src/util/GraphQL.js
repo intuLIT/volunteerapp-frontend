@@ -2,7 +2,7 @@ export const GQL = {
   query: (q) => {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
-    xhr.open("POST", "http://localhost:3003/graphql");
+    xhr.open("POST", "http://54.153.15.7:8080/graphql");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Accept", "application/json");
     xhr.onload = function () {
@@ -14,13 +14,12 @@ export const GQL = {
   }
 }
 
-export const pokemonQuery =
+export const allUsersStartsWith = (start) =>
 `{
-  pokemon(id: "1") {
-      name,
-      thumbnail,
-      favoriteMove {
-        id
-      }
+  pokemon(name_Istartswith: ${start}) {
+    edges {
+    node {
+      name
     }
+  }
 }`;
