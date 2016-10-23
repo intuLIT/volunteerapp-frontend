@@ -2,17 +2,18 @@ import React from 'react'
 import MainNavbar from './MainNavbar'
 import {Grid} from 'react-bootstrap';
 
-class Test extends React.Component {
+
+class Home extends React.Component {
     render() {
         return (
             <div>
                 <MainNavbar />
                 <Grid>
-                    <p>This is a test route!!</p>
+                    <p>Welcome to our website homepage!</p>
                 </Grid>
             </div>
         )
     }
 }
 
-export default Test
+export default Home
