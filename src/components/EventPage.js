@@ -21,7 +21,7 @@ import $ from 'jquery';
 const EventPage = React.createClass({
     getInitialState() {
       return ({
-
+        isRegistered: false
       })
     },
     componentWillMount() {
@@ -43,9 +43,49 @@ const EventPage = React.createClass({
               console.error(xhr.responseText);
           }
       });
+      $.ajax({
+          method: "POST",
+          url: "http://54.153.15.7:8080/event/attendees",
+          data: JSON.stringify({event_id: this.props.routeParams.eventId}),
+          dataType: 'json',
+          crossDomain: true,
+          beforeSend: function(xhr) {
+              xhr.setRequestHeader('Content-Type', 'application/json');
+          },
+          success: function(data) {
+            console.log(data);
+            reactthis.setState({...data})
+          },
+          error: function(xhr, status, err) {
+              console.error(xhr.responseText);
+          }
+      });
     },
     addUser(uid,eid) {
-
+      let reactthis = this;
+      $.ajax({
+          method: "POST",
+          url: "http://54.153.15.7:8080/add_user",
+          data: JSON.stringify({
+                                eId: eid,
+                                uId: uid,
+                              }),
+          dataType: 'json',
+          crossDomain: true,
+          beforeSend: function(xhr) {
+              xhr.setRequestHeader('Content-Type', 'application/json');
+          },
+          success: function(data) {
+            console.log(data);
+            reactthis.setState({
+              total: this.state.total + 1,
+              isRegistered: true
+            })
+          },
+          error: function(xhr, status, err) {
+              console.error(xhr.responseText);
+          }
+      });
     },
     render() {
         return (
@@ -56,7 +96,6 @@ const EventPage = React.createClass({
                       <Col sm={8} smOffset={2}>
                           <Well>
                               <Row>
-                                <Image src="https://avatars3.githubusercontent.com/u/1025028?v=3&s=60" circle />
                                 <Col sm={6}>
                                   <h1>{this.state.name}</h1>
                                 </Col>
@@ -68,24 +107,33 @@ const EventPage = React.createClass({
                                 <Row>
                                   <Col sm={12}>
                                     <ControlLabel><h4>Volunteers</h4></ControlLabel>
+                                    <p>
+                                        This event has {this.state.total} volunteers registered with a target
+                                        of atleast {this.state.min_volunteers} volunteers and has
+                                        room for {this.state.max_volunteers - this.state.total} more volunteers.
+                                    </p>
                                     <ProgressBar
-                                        min={this.state.min_volunteers}
-                                        max={this.state.max_volunteers}
-                                        label={10}
+                                        striped
+                                        bsStyle="success"
+                                        now={(100*this.state.total)/this.state.max_volunteers}
+                                        label={this.state.total}
                                     />
                                   </Col>
                                 </Row>
                                 <Row>
-                                    <Button
-                                      bsStyle="primary"
-                                      bsSize="large"
-                                      block type="submit"
-                                      onClick={(e) => {
-                                          e.preventDefault();
-                                          this.addUser(this.props.user.id, this.state.id)}
-                                      }>
-                                        Submit
-                                    </Button>
+                                    <Col sm={3}>
+                                        <Button
+                                          bsStyle="primary"
+                                          bsSize="large"
+                                          block type="submit"
+                                          disabled={this.state.isRegistered}
+                                          onClick={(e) => {
+                                              e.preventDefault();
+                                              this.addUser(this.props.user.id, this.state.id)}
+                                          }>
+                                            Register
+                                        </Button>
+                                    </Col>
                                 </Row>
                               </FormGroup>
                               <FormGroup>
