@@ -61,7 +61,7 @@ const CreateEvent = React.createClass({
     submitEvent() {
       $.ajax({
           method: "POST",
-          url: "http://54.153.15.7:8080/create_event",
+          url: "http://vlntr-api.reesewoodard.com:8080/create_event",
           data: JSON.stringify({
               name: this.state.name,
               start_date: moment(this.state.startDate).format("YYYY-MM-DD HH:mm:ss"),

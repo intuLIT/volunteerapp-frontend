@@ -24,7 +24,7 @@ const App = React.createClass({
             const reactThis = this;
             $.ajax({
                 method: "POST",
-                url: "http://54.153.15.7:8080/user/info/",
+                url: "http://vlntr-api.reesewoodard.com:8080/user/info/",
                 data: JSON.stringify({email: email}),
                 dataType: 'json',
                 crossDomain: true,
