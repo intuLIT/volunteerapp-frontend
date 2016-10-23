@@ -10,7 +10,7 @@ const Home = React.createClass({
         };
         return (
             <div>
-                <MainNavbar/>
+                <MainNavbar user={this.props.user} path={this.props.location.pathname}/>
                 <Grid>
                     <Jumbotron style={{background: 'rgba(255,255,255,.90)'}}>
                         <h1 style={centerStyle}>

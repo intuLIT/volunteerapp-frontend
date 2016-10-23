@@ -5,6 +5,8 @@ import React from 'react'
 import MainNavbar from './MainNavbar'
 import {Grid, FormGroup, FormControl, Button, Row, Col, Well} from 'react-bootstrap';
 import 'react-select/dist/react-select.css';
+import {hashHistory} from 'react-router';
+import $ from 'jquery';
 
 const Login = React.createClass({
     getInitialState(){
@@ -12,6 +14,10 @@ const Login = React.createClass({
             email: null,
             pass: null
         })
+    },
+    componentWillMount(){
+        const email = this.props.user.email;
+        $.isEmptyObject({email})? hashHistory.push('event-list') : null;
     },
     handleEmailChange(e){
         this.setState({volunteers: e.target.value})
@@ -25,7 +31,7 @@ const Login = React.createClass({
     render() {
         return (
             <div>
-                <MainNavbar/>
+                <MainNavbar user={this.props.user} path={this.props.location.pathname}/>
                 <Grid>
                     <Row>
                         <Col sm={6} smOffset={3} md={4} mdOffset={4}>
@@ -42,6 +48,7 @@ const Login = React.createClass({
                                     </FormGroup>
                                     <FormGroup>
                                         <FormControl
+                                            onChange={(e) => this.modifyState({pass: e.target.value})}
                                             id="formControlsPassword"
                                             label="Password"
                                             type="password"

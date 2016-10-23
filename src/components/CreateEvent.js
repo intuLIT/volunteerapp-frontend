@@ -31,7 +31,7 @@ const CreateEvent = React.createClass({
     render() {
         return (
             <div>
-                <MainNavbar/>
+                <MainNavbar user={this.props.user} path={this.props.location.pathname}/>
                 <Grid>
                     <Row>
                         <Col sm={8} smOffset={2}>
@@ -113,6 +113,6 @@ const CreateEvent = React.createClass({
             </div>
         )
     }
-})
+});
 
 export default CreateEvent
