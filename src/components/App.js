@@ -13,6 +13,7 @@ const App = React.createClass({
         document.body.style.backgroundAttachment = "fixed";
         document.body.style.backgroundPosition = "center center";
         document.body.style.backgroundSize = "cover";
+        this.setState({user : localStorage.getItem('user')});
     },
     getUser(email){
         const reactThis = this;
@@ -27,6 +28,7 @@ const App = React.createClass({
             },
             success: function(data) {
                 reactThis.setState({user : data});
+                localStorage.setItem('user', JSON.stringify(data));
                 hashHistory.push('event-list');
             },
             error: function(xhr, status, err) {

@@ -16,6 +16,7 @@ render(
             <Route path="create-event" component={CreateEvent}/>
             <Route path="create-org" component={AddOrganization}/>
             <Route path="event-list" component={EventList}/>
+            <Route path="event-list/:searchType" component={EventList}/>
             <Route path="login" component={Login}/>
             <Route path="signup" component={Signup}/>
         </Route>

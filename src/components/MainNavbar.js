@@ -27,8 +27,7 @@ const MainNavbar = React.createClass({
                         <NavItem eventKey={'/create-event'} href="#">Create Event</NavItem>
                         <NavDropdown eventKey={3} title="Events" id="basic-nav-dropdown">
                             <MenuItem eventKey={'/event-list'}>Near Me</MenuItem>
-                            <MenuItem eventKey={3.2}>Far Away</MenuItem>
-                            <MenuItem eventKey={3.3}>Really Far Away</MenuItem>
+                            <MenuItem eventKey={'/event-list/all'}>Everywhere</MenuItem>
                             <MenuItem divider />
                             <MenuItem eventKey={3.3}>Literally Mars</MenuItem>
                         </NavDropdown>
